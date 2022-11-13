@@ -5,15 +5,15 @@ import { AuthContext } from '../../Contexts/AuthProvider';
 
 const SignUp = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
-    const {createUser} = useContext(AuthContext)
+    const { createUser } = useContext(AuthContext)
 
     const handleSignUp = data => {
         createUser(data.email, data.password)
-        .then(result=> {
-            const user =result.user;
-            console.log(user)
-        })
-        .catch(err => console.log(err))
+            .then(result => {
+                const user = result.user;
+                console.log(user)
+            })
+            .catch(err => console.log(err))
         // console.log(data);
     }
 
@@ -32,7 +32,7 @@ const SignUp = () => {
                                 required: "Name is required",
                             })}
                             className="input input-bordered w-full max-w-xs" />
-                            {errors.name && <p className='text-red-700 mt-2' >{errors.name?.message}</p>}
+                        {errors.name && <p className='text-red-700 mt-2' >{errors.name?.message}</p>}
 
                     </div>
                     <div className="form-control w-full max-w-xs">
@@ -55,7 +55,7 @@ const SignUp = () => {
                             {...register("password", {
                                 required: "Password is required",
                                 minLength: { value: 6, message: "Password must be at least 6 characters" },
-                                pattern: {value: /(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])/, message: 'password must have uppercase letters and special characters'}
+                                pattern: { value: /(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])/, message: 'password must have uppercase letters and special characters' }
                             })}
                             className="input input-bordered w-full max-w-xs" />
                         {errors.password && <p className='text-red-700 mt-2' >{errors.password?.message}</p>}
