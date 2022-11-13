@@ -2,7 +2,7 @@ import { format } from 'date-fns';
 import { setDefaultOptions } from 'date-fns/esm';
 import React from 'react';
 
-const BookingModal = ({ treatment, selectedDate }) => {
+const BookingModal = ({ treatment, selectedDate, setTreatment }) => {
     //treatment is just another name of appointment Options with name, slots, _id
     const { name, slots } = treatment;
     const date = format(selectedDate, 'PP');
@@ -14,7 +14,21 @@ const BookingModal = ({ treatment, selectedDate }) => {
         const email = form.email.value;
         const slot = form.slot.value;
         const phone = form.phone.value;
-        console.log(date, name, email, slot, phone);
+
+        const booking = {
+            appointmentDate: date,
+            treatment: name,
+            patient: name,
+            email: email,
+            slot: slot,
+            phone: phone,
+        }
+        // TODO: send data to the server and
+        // once data is saved then close the modal
+        // and display the success toast;
+        console.log(booking);
+        setTreatment(null);
+
     }
     return (
         <>
@@ -29,7 +43,10 @@ const BookingModal = ({ treatment, selectedDate }) => {
                         <input type="text" disabled value={date} className="input w-full input-bordered" />
                         <select name='slot' className="select select-bordered w-full">
                             {
-                                slots.map(slot => <option value={slot}>{slot}</option>)
+                                slots.map((slot, i) => <option 
+                                value={slot}
+                                key={i}
+                                >{slot}</option>)
                             }
                         </select>
                         <input name='name' type="name" placeholder='Your name' className="input w-full input-bordered" />

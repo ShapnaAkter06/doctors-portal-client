@@ -19,7 +19,7 @@ const AvailableAppointments = ({ selectedDate }) => {
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6'>
                 {
                     appointmentOptions.map(option => <AppointmentOption
-                        key={option.id}
+                        key={option._id}
                         appointmentOption={option}
                         setTreatment={setTreatment}
                     ></AppointmentOption>)
@@ -30,6 +30,7 @@ const AvailableAppointments = ({ selectedDate }) => {
                 <BookingModal
                     treatment={treatment}
                     selectedDate={selectedDate}
+                    setTreatment= {setTreatment}
                 ></BookingModal>
             }
         </section >
