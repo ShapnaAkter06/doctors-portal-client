@@ -1,15 +1,19 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { Link } from 'react-router-dom';
 
 const Login = () => {
     const { register, handleSubmit } = useForm();
-    const [data, setData] = useState("");
+    
+    const handleLogin = data =>{
+        console.log(data)
+    }
 
     return (
         <div className='h-[800px] flex justify-center items-center'>
-            <div>
-                <h2 className='text-4xl'>Login</h2>
-                <form onSubmit={handleSubmit((data) => setData(JSON.stringify(data)))}>
+            <div className='w-96 p-7'>
+                <h2 className='text-xl text-center mb-5 font-bold'>Login</h2>
+                <form onSubmit={handleSubmit(handleLogin)}>
 
                     <div className="form-control w-full max-w-xs">
                         <label className="label">
@@ -23,11 +27,15 @@ const Login = () => {
                             <span className="label-text">Password</span>
                         </label>
                         <input type="password"  {...register("password")} className="input input-bordered w-full max-w-xs" />
+                        <label className="label my-2">
+                            <span className="label-text">Forget Password?</span>
+                        </label>
                     </div>
-
-                    <p>{data}</p>
-                    <input type="submit" />
+                    <input className='btn btn-accent w-full' type="submit" value="Login" />
                 </form>
+                <p className='text-center mt-2'>New to doctors portal <Link className='text-secondary font-bold' to='/signup'>Create an account</Link> </p>
+                <div className="divider">OR</div>
+                <button className='btn btn-outline w-full'>CONTINUE WITH GOOGLE</button>
             </div>
         </div>
     );
