@@ -1,13 +1,20 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../Contexts/AuthProvider';
 
 const SignUp = () => {
-
     const { register, handleSubmit, formState: { errors } } = useForm();
+    const {createUser} = useContext(AuthContext)
 
     const handleSignUp = data => {
-        console.log(data);
+        createUser(data.email, data.password)
+        .then(result=> {
+            const user =result.user;
+            console.log(user)
+        })
+        .catch(err => console.log(err))
+        // console.log(data);
     }
 
     return (
@@ -48,12 +55,12 @@ const SignUp = () => {
                             {...register("password", {
                                 required: "Password is required",
                                 minLength: { value: 6, message: "Password must be at least 6 characters" },
-                                pattern: {value: /(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])/, message: 'password must be strong'}
+                                pattern: {value: /(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])/, message: 'password must have uppercase letters and special characters'}
                             })}
                             className="input input-bordered w-full max-w-xs" />
                         {errors.password && <p className='text-red-700 mt-2' >{errors.password?.message}</p>}
                     </div>
-                    <input className='btn btn-accent w-full' type="submit" value="Sign Up" />
+                    <input className='btn btn-accent w-full mt-4' type="submit" value="Sign Up" />
                 </form>
                 <p className='text-center mt-2'>Already have an account? <Link className='text-secondary font-bold' to='/login'>Please Login</Link> </p>
                 <div className="divider">OR</div>
