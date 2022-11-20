@@ -121,7 +121,6 @@ const AddDoctor = () => {
 
                 </div>
                 <input className='btn btn-accent w-full mt-4' type="submit" value="Add a Doctor" />
-                {/* {signUpError && <p className='text-red-700 mt-2'>{signUpError}</p>} */}
             </form>
         </div>
     );
