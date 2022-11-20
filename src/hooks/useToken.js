@@ -15,7 +15,7 @@ const useToken = email => {
                 })
         }
     }, [email])
-    return token;
+    return [token];
 
 }
 export default useToken;

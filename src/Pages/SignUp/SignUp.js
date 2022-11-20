@@ -9,7 +9,7 @@ const SignUp = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
     const { createUser, updateUser } = useContext(AuthContext);
     const [signUpError, setSignUPError] = useState('');
-    const { createdUserEmail, setCreatedUserEmail } = useState('')
+    const [createdUserEmail, setCreatedUserEmail] = useState('')
     const [token] = useToken(createdUserEmail)
     const navigate = useNavigate();
 
