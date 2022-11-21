@@ -1,8 +1,8 @@
 import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Contexts/AuthProvider';
-import toast from 'react-hot-toast';
 import useToken from '../../hooks/useToken';
 
 const SignUp = () => {
@@ -42,7 +42,7 @@ const SignUp = () => {
 
     const saveUser = (name, email) => {
         const user = { name, email };
-        fetch('http://localhost:5000/users', {
+        fetch('https://doctors-portal-server-mu-three.vercel.app/users', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
